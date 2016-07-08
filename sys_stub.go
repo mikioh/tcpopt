@@ -8,7 +8,7 @@ package tcpopt
 
 import "errors"
 
-var options = map[int]option{}
+var options [soMax]option
 
 var parsers = map[int64]func([]byte) (Option, error){}
 

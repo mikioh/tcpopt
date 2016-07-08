@@ -37,15 +37,15 @@ func (ka KeepAlive) Marshal() ([]byte, error) {
 
 // Marshal implements the Marshal method of Option interface.
 func (ka KeepAliveIdleInterval) Marshal() ([]byte, error) {
-	ka += KeepAliveIdleInterval(options[kaIdleInterval].uot - time.Nanosecond)
-	v := int32(time.Duration(ka) / options[kaIdleInterval].uot)
+	ka += KeepAliveIdleInterval(options[soKeepidle].uot - time.Nanosecond)
+	v := int32(time.Duration(ka) / options[soKeepidle].uot)
 	return (*[4]byte)(unsafe.Pointer(&v))[:], nil
 }
 
 // Marshal implements the Marshal method of Option interface.
 func (ka KeepAliveProbeInterval) Marshal() ([]byte, error) {
-	ka += KeepAliveProbeInterval(options[kaProbeInterval].uot - time.Nanosecond)
-	v := int32(time.Duration(ka) / options[kaProbeInterval].uot)
+	ka += KeepAliveProbeInterval(options[soKeepintvl].uot - time.Nanosecond)
+	v := int32(time.Duration(ka) / options[soKeepintvl].uot)
 	return (*[4]byte)(unsafe.Pointer(&v))[:], nil
 }
 
@@ -84,12 +84,12 @@ func parseKeepAlive(b []byte) (Option, error) {
 }
 
 func parseKeepAliveIdleInterval(b []byte) (Option, error) {
-	v := time.Duration(nativeEndian.Uint32(b)) * options[kaIdleInterval].uot
+	v := time.Duration(nativeEndian.Uint32(b)) * options[soKeepidle].uot
 	return KeepAliveIdleInterval(v), nil
 }
 
 func parseKeepAliveProbeInterval(b []byte) (Option, error) {
-	v := time.Duration(nativeEndian.Uint32(b)) * options[kaProbeInterval].uot
+	v := time.Duration(nativeEndian.Uint32(b)) * options[soKeepintvl].uot
 	return KeepAliveProbeInterval(v), nil
 }
 

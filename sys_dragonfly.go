@@ -8,16 +8,16 @@ package tcpopt
 
 import "time"
 
-var options = map[int]option{
-	noDelay:         {ianaProtocolTCP, sysTCP_NODELAY, 0},
-	bSend:           {sysSOL_SOCKET, sysSO_SNDBUF, 0},
-	bReceive:        {sysSOL_SOCKET, sysSO_RCVBUF, 0},
-	keepAlive:       {sysSOL_SOCKET, sysSO_KEEPALIVE, 0},
-	kaIdleInterval:  {ianaProtocolTCP, sysTCP_KEEPIDLE, time.Millisecond},
-	kaProbeInterval: {ianaProtocolTCP, sysTCP_KEEPINTVL, time.Millisecond},
-	kaProbeCount:    {ianaProtocolTCP, sysTCP_KEEPCNT, 0},
-	bCork:           {ianaProtocolTCP, sysTCP_NOPUSH, 0},
-	bNotSentLowWMK:  {ianaProtocolTCP, -1, 0},
+var options = [soMax]option{
+	soNodelay:      {ianaProtocolTCP, sysTCP_NODELAY, 0},
+	soSndbuf:       {sysSOL_SOCKET, sysSO_SNDBUF, 0},
+	soRcvbuf:       {sysSOL_SOCKET, sysSO_RCVBUF, 0},
+	soKeepalive:    {sysSOL_SOCKET, sysSO_KEEPALIVE, 0},
+	soKeepidle:     {ianaProtocolTCP, sysTCP_KEEPIDLE, time.Millisecond},
+	soKeepintvl:    {ianaProtocolTCP, sysTCP_KEEPINTVL, time.Millisecond},
+	soKeepcnt:      {ianaProtocolTCP, sysTCP_KEEPCNT, 0},
+	soCork:         {ianaProtocolTCP, sysTCP_NOPUSH, 0},
+	soNotsentLOWAT: {ianaProtocolTCP, -1, 0},
 }
 
 var parsers = map[int64]func([]byte) (Option, error){

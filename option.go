@@ -24,37 +24,37 @@ type Option interface {
 type NoDelay bool
 
 // Level implements the Level method of Option interface.
-func (nd NoDelay) Level() int { return options[noDelay].level }
+func (nd NoDelay) Level() int { return options[soNodelay].level }
 
 // Name implements the Name method of Option interface.
-func (nd NoDelay) Name() int { return options[noDelay].name }
+func (nd NoDelay) Name() int { return options[soNodelay].name }
 
 // SendBuffer specifies the size of send buffer.
 type SendBuffer int
 
 // Level implements the Level method of Option interface.
-func (sb SendBuffer) Level() int { return options[bSend].level }
+func (sb SendBuffer) Level() int { return options[soSndbuf].level }
 
 // Name implements the Name method of Option interface.
-func (sb SendBuffer) Name() int { return options[bSend].name }
+func (sb SendBuffer) Name() int { return options[soSndbuf].name }
 
 // ReceiveBuffer specifies the size of send buffer.
 type ReceiveBuffer int
 
 // Level implements the Level method of Option interface.
-func (rb ReceiveBuffer) Level() int { return options[bReceive].level }
+func (rb ReceiveBuffer) Level() int { return options[soRcvbuf].level }
 
 // Name implements the Name method of Option interface.
-func (rb ReceiveBuffer) Name() int { return options[bReceive].name }
+func (rb ReceiveBuffer) Name() int { return options[soRcvbuf].name }
 
 // KeepAlive specifies the use of keep alive.
 type KeepAlive bool
 
 // Level implements the Level method of Option interface.
-func (ka KeepAlive) Level() int { return options[keepAlive].level }
+func (ka KeepAlive) Level() int { return options[soKeepalive].level }
 
 // Name implements the Name method of Option interface.
-func (ka KeepAlive) Name() int { return options[keepAlive].name }
+func (ka KeepAlive) Name() int { return options[soKeepalive].name }
 
 // KeepAliveIdleInterval is the idle interval until the first probe is
 // sent.
@@ -64,10 +64,10 @@ func (ka KeepAlive) Name() int { return options[keepAlive].name }
 type KeepAliveIdleInterval time.Duration
 
 // Level implements the Level method of Option interface.
-func (ka KeepAliveIdleInterval) Level() int { return options[kaIdleInterval].level }
+func (ka KeepAliveIdleInterval) Level() int { return options[soKeepidle].level }
 
 // Name implements the Name method of Option interface.
-func (ka KeepAliveIdleInterval) Name() int { return options[kaIdleInterval].name }
+func (ka KeepAliveIdleInterval) Name() int { return options[soKeepidle].name }
 
 // KeepAliveProbeInterval is the interval between keepalive probes.
 //
@@ -76,10 +76,10 @@ func (ka KeepAliveIdleInterval) Name() int { return options[kaIdleInterval].name
 type KeepAliveProbeInterval time.Duration
 
 // Level implements the Level method of Option interface.
-func (ka KeepAliveProbeInterval) Level() int { return options[kaProbeInterval].level }
+func (ka KeepAliveProbeInterval) Level() int { return options[soKeepintvl].level }
 
 // Name implements the Name method of Option interface.
-func (ka KeepAliveProbeInterval) Name() int { return options[kaProbeInterval].name }
+func (ka KeepAliveProbeInterval) Name() int { return options[soKeepintvl].name }
 
 // KeepAliveProbeCount is the number of keepalive probes should be
 // repeated when the peer is not responding.
@@ -89,10 +89,10 @@ func (ka KeepAliveProbeInterval) Name() int { return options[kaProbeInterval].na
 type KeepAliveProbeCount int
 
 // Level implements the Level method of Option interface.
-func (ka KeepAliveProbeCount) Level() int { return options[kaProbeCount].level }
+func (ka KeepAliveProbeCount) Level() int { return options[soKeepcnt].level }
 
 // Name implements the Name method of Option interface.
-func (ka KeepAliveProbeCount) Name() int { return options[kaProbeCount].name }
+func (ka KeepAliveProbeCount) Name() int { return options[soKeepcnt].name }
 
 // Cork specifies the use of TCP_CORK or TCP_NOPUSH option.
 //
@@ -102,10 +102,10 @@ func (ka KeepAliveProbeCount) Name() int { return options[kaProbeCount].name }
 type Cork bool
 
 // Level implements the Level method of Option interface.
-func (ck Cork) Level() int { return options[bCork].level }
+func (ck Cork) Level() int { return options[soCork].level }
 
 // Name implements the Name method of Option interface.
-func (ck Cork) Name() int { return options[bCork].name }
+func (ck Cork) Name() int { return options[soCork].name }
 
 // NotSentLowWMK specifies the amount of unsent bytes in TCP
 // transmission queue. The network poller such as kqueue or epoll
@@ -117,7 +117,7 @@ func (ck Cork) Name() int { return options[bCork].name }
 type NotSentLowWMK int
 
 // Level implements the Level method of Option interface.
-func (ns NotSentLowWMK) Level() int { return options[bNotSentLowWMK].level }
+func (ns NotSentLowWMK) Level() int { return options[soNotsentLOWAT].level }
 
 // Name implements the Name method of Option interface.
-func (ns NotSentLowWMK) Name() int { return options[bNotSentLowWMK].name }
+func (ns NotSentLowWMK) Name() int { return options[soNotsentLOWAT].name }

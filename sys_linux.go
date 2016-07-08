@@ -6,16 +6,16 @@ package tcpopt
 
 import "time"
 
-var options = map[int]option{
-	noDelay:         {ianaProtocolTCP, sysTCP_NODELAY, 0},
-	bSend:           {sysSOL_SOCKET, sysSO_SNDBUF, 0},
-	bReceive:        {sysSOL_SOCKET, sysSO_RCVBUF, 0},
-	keepAlive:       {sysSOL_SOCKET, sysSO_KEEPALIVE, 0},
-	kaIdleInterval:  {ianaProtocolTCP, sysTCP_KEEPIDLE, time.Second},
-	kaProbeInterval: {ianaProtocolTCP, sysTCP_KEEPINTVL, time.Second},
-	kaProbeCount:    {ianaProtocolTCP, sysTCP_KEEPCNT, 0},
-	bCork:           {ianaProtocolTCP, sysTCP_CORK, 0},
-	bNotSentLowWMK:  {ianaProtocolTCP, sysTCP_NOTSENT_LOWAT, 0},
+var options = [soMax]option{
+	soNodelay:      {ianaProtocolTCP, sysTCP_NODELAY, 0},
+	soSndbuf:       {sysSOL_SOCKET, sysSO_SNDBUF, 0},
+	soRcvbuf:       {sysSOL_SOCKET, sysSO_RCVBUF, 0},
+	soKeepalive:    {sysSOL_SOCKET, sysSO_KEEPALIVE, 0},
+	soKeepidle:     {ianaProtocolTCP, sysTCP_KEEPIDLE, time.Second},
+	soKeepintvl:    {ianaProtocolTCP, sysTCP_KEEPINTVL, time.Second},
+	soKeepcnt:      {ianaProtocolTCP, sysTCP_KEEPCNT, 0},
+	soCork:         {ianaProtocolTCP, sysTCP_CORK, 0},
+	soNotsentLOWAT: {ianaProtocolTCP, sysTCP_NOTSENT_LOWAT, 0},
 }
 
 var parsers = map[int64]func([]byte) (Option, error){

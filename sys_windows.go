@@ -25,16 +25,16 @@ const (
 	sysSIO_KEEPALIVE_VALS = sysIOC_IN | sysIOC_VENDOR | 4
 )
 
-var options = map[int]option{
-	noDelay:         {ianaProtocolTCP, sysTCP_NODELAY, 0},
-	bSend:           {sysSOL_SOCKET, sysSO_SNDBUF, 0},
-	bReceive:        {sysSOL_SOCKET, sysSO_RCVBUF, 0},
-	keepAlive:       {sysSOL_SOCKET, sysSO_KEEPALIVE, 0},
-	kaIdleInterval:  {ianaProtocolTCP, sysSIO_KEEPALIVE_VALS, time.Millisecond},
-	kaProbeInterval: {ianaProtocolTCP, sysSIO_KEEPALIVE_VALS, time.Millisecond},
-	kaProbeCount:    {ianaProtocolTCP, -1, 0},
-	bCork:           {ianaProtocolTCP, -1, 0},
-	bNotSentLowWMK:  {ianaProtocolTCP, -1, 0},
+var options = [soMax]option{
+	soNodelay:      {ianaProtocolTCP, sysTCP_NODELAY, 0},
+	soSndbuf:       {sysSOL_SOCKET, sysSO_SNDBUF, 0},
+	soRcvbuf:       {sysSOL_SOCKET, sysSO_RCVBUF, 0},
+	soKeepalive:    {sysSOL_SOCKET, sysSO_KEEPALIVE, 0},
+	soKeepidle:     {ianaProtocolTCP, sysSIO_KEEPALIVE_VALS, time.Millisecond},
+	soKeepintvl:    {ianaProtocolTCP, sysSIO_KEEPALIVE_VALS, time.Millisecond},
+	soKeepcnt:      {ianaProtocolTCP, -1, 0},
+	soCork:         {ianaProtocolTCP, -1, 0},
+	soNotsentLOWAT: {ianaProtocolTCP, -1, 0},
 }
 
 var parsers = map[int64]func([]byte) (Option, error){
@@ -71,15 +71,15 @@ func (ka KeepAlive) Marshal() ([]byte, error) {
 
 // Marshal implements the Marshal method of Option interface.
 func (ka KeepAliveIdleInterval) Marshal() ([]byte, error) {
-	ka += KeepAliveIdleInterval(options[kaIdleInterval].uot - time.Nanosecond)
-	v := uint32(time.Duration(ka) / options[kaIdleInterval].uot)
+	ka += KeepAliveIdleInterval(options[soKeepidle].uot - time.Nanosecond)
+	v := uint32(time.Duration(ka) / options[soKeepidle].uot)
 	return (*[4]byte)(unsafe.Pointer(&v))[:], nil
 }
 
 // Marshal implements the Marshal method of Option interface.
 func (ka KeepAliveProbeInterval) Marshal() ([]byte, error) {
-	ka += KeepAliveProbeInterval(options[kaProbeInterval].uot - time.Nanosecond)
-	v := uint32(time.Duration(ka) / options[kaProbeInterval].uot)
+	ka += KeepAliveProbeInterval(options[soKeepintvl].uot - time.Nanosecond)
+	v := uint32(time.Duration(ka) / options[soKeepintvl].uot)
 	return (*[4]byte)(unsafe.Pointer(&v))[:], nil
 }
 

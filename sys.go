@@ -41,15 +41,16 @@ const (
 )
 
 const (
-	noDelay = iota
-	bSend
-	bReceive
-	keepAlive
-	kaIdleInterval
-	kaProbeInterval
-	kaProbeCount
-	bCork
-	bNotSentLowWMK
+	soNodelay = iota
+	soSndbuf
+	soRcvbuf
+	soKeepalive
+	soKeepidle
+	soKeepintvl
+	soKeepcnt
+	soCork
+	soNotsentLOWAT
+	soMax
 )
 
 // An option represents a binding for socket option.
