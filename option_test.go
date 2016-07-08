@@ -5,10 +5,10 @@
 package tcpopt_test
 
 import (
+	"reflect"
 	"runtime"
 	"testing"
 	"time"
-	"reflect"
 
 	"github.com/mikioh/tcpopt"
 )
