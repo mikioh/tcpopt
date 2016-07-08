@@ -39,12 +39,13 @@ func TestOption(t *testing.T) {
 	case "darwin", "linux":
 		opts = append(opts, tcpopt.NotSentLowWMK(1))
 	}
+
 	for _, o := range opts {
-		if o.Level() == 0 {
-			t.Fatalf("got %#x; want non-zero value", o.Level())
+		if o.Level() <= 0 {
+			t.Fatalf("got %#x; want greater than zero", o.Level())
 		}
-		if o.Name() == 0 {
-			t.Fatalf("got %#x; want non-zero value", o.Name())
+		if o.Name() <= 0 {
+			t.Fatalf("got %#x; want greater than zero", o.Name())
 		}
 		b, err := o.Marshal()
 		if err != nil {
@@ -61,8 +62,8 @@ func TestOption(t *testing.T) {
 }
 
 const (
-	testOptLevel = 0xfffe
-	testOptName  = 0xfffd
+	testOptLevel = 0xfff1
+	testOptName  = 0xfff2
 )
 
 type testOption struct{}
