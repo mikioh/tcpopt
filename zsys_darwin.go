@@ -10,8 +10,10 @@ const (
 	sysSO_SNDBUF    = 0x1001
 	sysSO_RCVBUF    = 0x1002
 
-	sysTCP_NODELAY   = 0x1
-	sysTCP_KEEPALIVE = 0x10
-	sysTCP_KEEPINTVL = 0x101
-	sysTCP_KEEPCNT   = 0x102
+	sysTCP_NODELAY       = 0x1
+	sysTCP_KEEPALIVE     = 0x10
+	sysTCP_KEEPINTVL     = 0x101
+	sysTCP_KEEPCNT       = 0x102
+	sysTCP_NOPUSH        = 0x4
+	sysTCP_NOTSENT_LOWAT = 0x201
 )

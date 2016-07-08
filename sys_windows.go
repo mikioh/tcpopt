@@ -32,6 +32,9 @@ var options = map[int]option{
 	keepAlive:       {sysSOL_SOCKET, sysSO_KEEPALIVE, 0},
 	kaIdleInterval:  {ianaProtocolTCP, sysSIO_KEEPALIVE_VALS, time.Millisecond},
 	kaProbeInterval: {ianaProtocolTCP, sysSIO_KEEPALIVE_VALS, time.Millisecond},
+	kaProbeCount:    {ianaProtocolTCP, -1, 0},
+	bCork:           {ianaProtocolTCP, -1, 0},
+	bNotSentLowWMK:  {ianaProtocolTCP, -1, 0},
 }
 
 var parsers = map[int64]func([]byte) (Option, error){
@@ -82,6 +85,16 @@ func (ka KeepAliveProbeInterval) Marshal() ([]byte, error) {
 
 // Marshal implements the Marshal method of Option interface.
 func (ka KeepAliveProbeCount) Marshal() ([]byte, error) {
+	return nil, errors.New("operation not supported")
+}
+
+// Marshal implements the Marshal method of Option interface.
+func (ck Cork) Marshal() ([]byte, error) {
+	return nil, errors.New("operation not supported")
+}
+
+// Marshal implements the Marshal method of Option interface.
+func (ns NotSentLowWMK) Marshal() ([]byte, error) {
 	return nil, errors.New("operation not supported")
 }
 

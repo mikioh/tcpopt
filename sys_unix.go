@@ -55,6 +55,18 @@ func (ka KeepAliveProbeCount) Marshal() ([]byte, error) {
 	return (*[4]byte)(unsafe.Pointer(&v))[:], nil
 }
 
+// Marshal implements the Marshal method of Option interface.
+func (ck Cork) Marshal() ([]byte, error) {
+	v := boolint32(bool(ck))
+	return (*[4]byte)(unsafe.Pointer(&v))[:], nil
+}
+
+// Marshal implements the Marshal method of Option interface.
+func (ns NotSentLowWMK) Marshal() ([]byte, error) {
+	v := int32(ns)
+	return (*[4]byte)(unsafe.Pointer(&v))[:], nil
+}
+
 func parseNoDelay(b []byte) (Option, error) {
 	return NoDelay(uint32bool(nativeEndian.Uint32(b))), nil
 }
@@ -83,4 +95,12 @@ func parseKeepAliveProbeInterval(b []byte) (Option, error) {
 
 func parseKeepAliveProbeCount(b []byte) (Option, error) {
 	return KeepAliveProbeCount(nativeEndian.Uint32(b)), nil
+}
+
+func parseCork(b []byte) (Option, error) {
+	return Cork(uint32bool(nativeEndian.Uint32(b))), nil
+}
+
+func parseNotSentLowWMK(b []byte) (Option, error) {
+	return NotSentLowWMK(nativeEndian.Uint32(b)), nil
 }

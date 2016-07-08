@@ -20,7 +20,7 @@ type Option interface {
 	Marshal() ([]byte, error)
 }
 
-// NoDealy specifies the use of Nagle's algorithm.
+// NoDelay specifies the use of Nagle's algorithm.
 type NoDelay bool
 
 // Level implements the Level method of Option interface.
@@ -93,3 +93,31 @@ func (ka KeepAliveProbeCount) Level() int { return options[kaProbeCount].level }
 
 // Name implements the Name method of Option interface.
 func (ka KeepAliveProbeCount) Name() int { return options[kaProbeCount].name }
+
+// Cork specifies the use of TCP_CORK or TCP_NOPUSH option.
+//
+// DragonFly BSD may need to adjust the net.inet.tcp.disable_nopush
+// kernel state.
+// NetBSD and Windows don't support this option.
+type Cork bool
+
+// Level implements the Level method of Option interface.
+func (ck Cork) Level() int { return options[bCork].level }
+
+// Name implements the Name method of Option interface.
+func (ck Cork) Name() int { return options[bCork].name }
+
+// NotSentLowWMK specifies the amount of unsent bytes in TCP
+// transmission queue. The network poller such as kqueue or epoll
+// doesn't report that the connection is writable while the amount of
+// unsent data size is greater than NotSentLowWMK.
+//
+// For now only Darwin and Linux support this option.
+// See TCP_NOTSENT_LOWAT for further information.
+type NotSentLowWMK int
+
+// Level implements the Level method of Option interface.
+func (ns NotSentLowWMK) Level() int { return options[bNotSentLowWMK].level }
+
+// Name implements the Name method of Option interface.
+func (ns NotSentLowWMK) Name() int { return options[bNotSentLowWMK].name }

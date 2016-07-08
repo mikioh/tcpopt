@@ -14,6 +14,8 @@ var options = map[int]option{
 	kaIdleInterval:  {ianaProtocolTCP, sysTCP_KEEPIDLE, time.Second},
 	kaProbeInterval: {ianaProtocolTCP, sysTCP_KEEPINTVL, time.Second},
 	kaProbeCount:    {ianaProtocolTCP, sysTCP_KEEPCNT, 0},
+	bCork:           {ianaProtocolTCP, -1, 0},
+	bNotSentLowWMK:  {ianaProtocolTCP, -1, 0},
 }
 
 var parsers = map[int64]func([]byte) (Option, error){

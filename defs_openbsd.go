@@ -21,4 +21,5 @@ const (
 	sysSO_RCVBUF    = C.SO_RCVBUF
 
 	sysTCP_NODELAY = C.TCP_NODELAY
+	sysTCP_NOPUSH  = C.TCP_NOPUSH
 )

@@ -22,6 +22,7 @@ const (
 	sysTCP_KEEPIDLE                  = 0x22
 	sysTCP_KEEPCNT                   = 0x23
 	sysTCP_KEEPINTVL                 = 0x24
+	sysTCP_CORK                      = 0x18
 )
 
 var options = map[int]option{
@@ -32,6 +33,8 @@ var options = map[int]option{
 	kaIdleInterval:  {ianaProtocolTCP, sysTCP_KEEPIDLE, time.Second},
 	kaProbeInterval: {ianaProtocolTCP, sysTCP_KEEPINTVL, time.Second},
 	kaProbeCount:    {ianaProtocolTCP, sysTCP_KEEPCNT, 0},
+	bCork:           {ianaProtocolTCP, sysTCP_CORK, 0},
+	bNotSentLowWMK:  {ianaProtocolTCP, -1, 0},
 }
 
 var parsers = map[int64]func([]byte) (Option, error){
@@ -42,4 +45,5 @@ var parsers = map[int64]func([]byte) (Option, error){
 	ianaProtocolTCP<<32 | sysTCP_KEEPIDLE:  parseKeepAliveIdleInterval,
 	ianaProtocolTCP<<32 | sysTCP_KEEPINTVL: parseKeepAliveProbeInterval,
 	ianaProtocolTCP<<32 | sysTCP_KEEPCNT:   parseKeepAliveProbeCount,
+	ianaProtocolTCP<<32 | sysTCP_CORK:      parseCork,
 }

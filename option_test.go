@@ -30,6 +30,15 @@ func TestOption(t *testing.T) {
 		opts = append(opts, tcpopt.KeepAliveProbeInterval(10*time.Minute))
 		opts = append(opts, tcpopt.KeepAliveProbeCount(3))
 	}
+	switch runtime.GOOS {
+	case "netbsd", "windows":
+	default:
+		opts = append(opts, tcpopt.Cork(true))
+	}
+	switch runtime.GOOS {
+	case "darwin", "linux":
+		opts = append(opts, tcpopt.NotSentLowWMK(1))
+	}
 	for _, o := range opts {
 		if o.Level() == 0 {
 			t.Fatalf("got %#x; want non-zero value", o.Level())

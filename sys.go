@@ -48,6 +48,8 @@ const (
 	kaIdleInterval
 	kaProbeInterval
 	kaProbeCount
+	bCork
+	bNotSentLowWMK
 )
 
 // An option represents a binding for socket option.

@@ -5,10 +5,15 @@
 package tcpopt
 
 var options = map[int]option{
-	noDelay:   {ianaProtocolTCP, sysTCP_NODELAY, 0},
-	bSend:     {sysSOL_SOCKET, sysSO_SNDBUF, 0},
-	bReceive:  {sysSOL_SOCKET, sysSO_RCVBUF, 0},
-	keepAlive: {sysSOL_SOCKET, sysSO_KEEPALIVE, 0},
+	noDelay:         {ianaProtocolTCP, sysTCP_NODELAY, 0},
+	bSend:           {sysSOL_SOCKET, sysSO_SNDBUF, 0},
+	bReceive:        {sysSOL_SOCKET, sysSO_RCVBUF, 0},
+	keepAlive:       {sysSOL_SOCKET, sysSO_KEEPALIVE, 0},
+	kaIdleInterval:  {ianaProtocolTCP, -1, time.Millisecond},
+	kaProbeInterval: {ianaProtocolTCP, -1, time.Millisecond},
+	kaProbeCount:    {ianaProtocolTCP, -1, 0},
+	bCork:           {ianaProtocolTCP, sysTCP_NOPUSH, 0},
+	bNotSentLowWMK:  {ianaProtocolTCP, -1, 0},
 }
 
 var parsers = map[int64]func([]byte) (Option, error){
@@ -16,4 +21,5 @@ var parsers = map[int64]func([]byte) (Option, error){
 	sysSOL_SOCKET<<32 | sysSO_SNDBUF:     parseSendBuffer,
 	sysSOL_SOCKET<<32 | sysSO_RCVBUF:     parseReceiveBuffer,
 	sysSOL_SOCKET<<32 | sysSO_KEEPALIVE:  parseKeepAlive,
+	ianaProtocolTCP<<32 | sysTCP_NOPUSH:  parseCork,
 }

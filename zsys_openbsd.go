@@ -11,4 +11,5 @@ const (
 	sysSO_RCVBUF    = 0x1002
 
 	sysTCP_NODELAY = 0x1
+	sysTCP_NOPUSH  = 0x10
 )

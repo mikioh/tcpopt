@@ -46,3 +46,13 @@ func (ka KeepAliveProbeInterval) Marshal() ([]byte, error) {
 func (ka KeepAliveProbeCount) Marshal() ([]byte, error) {
 	return nil, errors.New("operation not supported")
 }
+
+// Marshal implements the Marshal method of Option interface.
+func (ck Cork) Marshal() ([]byte, error) {
+	return nil, errors.New("operation not supported")
+}
+
+// Marshal implements the Marshal method of Option interface.
+func (ns NotSentLowWMK) Marshal() ([]byte, error) {
+	return nil, errors.New("operation not supported")
+}

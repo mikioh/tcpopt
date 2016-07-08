@@ -14,14 +14,18 @@ var options = map[int]option{
 	kaIdleInterval:  {ianaProtocolTCP, sysTCP_KEEPIDLE, time.Second},
 	kaProbeInterval: {ianaProtocolTCP, sysTCP_KEEPINTVL, time.Second},
 	kaProbeCount:    {ianaProtocolTCP, sysTCP_KEEPCNT, 0},
+	bCork:           {ianaProtocolTCP, sysTCP_CORK, 0},
+	bNotSentLowWMK:  {ianaProtocolTCP, sysTCP_NOTSENT_LOWAT, 0},
 }
 
 var parsers = map[int64]func([]byte) (Option, error){
-	ianaProtocolTCP<<32 | sysTCP_NODELAY:   parseNoDelay,
-	sysSOL_SOCKET<<32 | sysSO_SNDBUF:       parseSendBuffer,
-	sysSOL_SOCKET<<32 | sysSO_RCVBUF:       parseReceiveBuffer,
-	sysSOL_SOCKET<<32 | sysSO_KEEPALIVE:    parseKeepAlive,
-	ianaProtocolTCP<<32 | sysTCP_KEEPIDLE:  parseKeepAliveIdleInterval,
-	ianaProtocolTCP<<32 | sysTCP_KEEPINTVL: parseKeepAliveProbeInterval,
-	ianaProtocolTCP<<32 | sysTCP_KEEPCNT:   parseKeepAliveProbeCount,
+	ianaProtocolTCP<<32 | sysTCP_NODELAY:       parseNoDelay,
+	sysSOL_SOCKET<<32 | sysSO_SNDBUF:           parseSendBuffer,
+	sysSOL_SOCKET<<32 | sysSO_RCVBUF:           parseReceiveBuffer,
+	sysSOL_SOCKET<<32 | sysSO_KEEPALIVE:        parseKeepAlive,
+	ianaProtocolTCP<<32 | sysTCP_KEEPIDLE:      parseKeepAliveIdleInterval,
+	ianaProtocolTCP<<32 | sysTCP_KEEPINTVL:     parseKeepAliveProbeInterval,
+	ianaProtocolTCP<<32 | sysTCP_KEEPCNT:       parseKeepAliveProbeCount,
+	ianaProtocolTCP<<32 | sysTCP_CORK:          parseCork,
+	ianaProtocolTCP<<32 | sysTCP_NOTSENT_LOWAT: parseNotSentLowWMK,
 }
