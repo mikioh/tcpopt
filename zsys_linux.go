@@ -1,0 +1,17 @@
+// Created by cgo -godefs - DO NOT EDIT
+// cgo -godefs defs_linux.go
+
+package tcpopt
+
+const (
+	sysSOL_SOCKET = 0x1
+
+	sysSO_KEEPALIVE = 0x9
+	sysSO_SNDBUF    = 0x7
+	sysSO_RCVBUF    = 0x8
+
+	sysTCP_NODELAY   = 0x1
+	sysTCP_KEEPIDLE  = 0x4
+	sysTCP_KEEPINTVL = 0x5
+	sysTCP_KEEPCNT   = 0x6
+)
