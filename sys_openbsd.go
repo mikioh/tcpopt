@@ -4,6 +4,8 @@
 
 package tcpopt
 
+import "time"
+
 var options = [soMax]option{
 	soNodelay:      {ianaProtocolTCP, sysTCP_NODELAY, 0},
 	soSndbuf:       {sysSOL_SOCKET, sysSO_SNDBUF, 0},
