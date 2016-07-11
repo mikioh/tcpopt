@@ -96,8 +96,8 @@ func (ka KeepAliveProbeCount) Name() int { return options[soKeepcnt].name }
 
 // Cork specifies the use of TCP_CORK or TCP_NOPUSH option.
 //
-// DragonFly BSD may need to adjust the net.inet.tcp.disable_nopush
-// kernel state.
+// On DragonFly BSD, the caller may need to adjust the
+// net.inet.tcp.disable_nopush kernel state.
 // NetBSD and Windows don't support this option.
 type Cork bool
 
