@@ -107,10 +107,10 @@ func (ck Cork) Level() int { return options[soCork].level }
 // Name implements the Name method of Option interface.
 func (ck Cork) Name() int { return options[soCork].name }
 
-// NotSentLowWMK specifies the amount of unsent bytes in TCP
-// transmission queue. The network poller such as kqueue or epoll
-// doesn't report that the connection is writable while the amount of
-// unsent data size is greater than NotSentLowWMK.
+// NotSentLowWMK specifies the amount of unsent bytes in transmission
+// queue. The network poller such as kqueue or epoll doesn't report
+// that the connection is writable while the amount of unsent data
+// size is greater than NotSentLowWMK.
 //
 // For now only Darwin and Linux support this option.
 // See TCP_NOTSENT_LOWAT for further information.
