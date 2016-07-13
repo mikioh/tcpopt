@@ -84,36 +84,40 @@ func (ka KeepAliveProbeInterval) Marshal() ([]byte, error) {
 }
 
 // Marshal implements the Marshal method of Option interface.
-func (ka KeepAliveProbeCount) Marshal() ([]byte, error) {
-	return nil, errors.New("operation not supported")
-}
+func (ka KeepAliveProbeCount) Marshal() ([]byte, error) { return nil, errOpNoSupport }
 
 // Marshal implements the Marshal method of Option interface.
-func (ck Cork) Marshal() ([]byte, error) {
-	return nil, errors.New("operation not supported")
-}
+func (ck Cork) Marshal() ([]byte, error) { return nil, errOpNoSupport }
 
 // Marshal implements the Marshal method of Option interface.
-func (ns NotSentLowWMK) Marshal() ([]byte, error) {
-	return nil, errors.New("operation not supported")
-}
+func (ns NotSentLowWMK) Marshal() ([]byte, error) { return nil, errOpNoSupport }
 
 func parseNoDelay(b []byte) (Option, error) {
+	if len(b) < 4 {
+		return nil, errBufferTooShort
+	}
 	return NoDelay(uint32bool(nativeEndian.Uint32(b))), nil
 }
 
 func parseSendBuffer(b []byte) (Option, error) {
+	if len(b) < 4 {
+		return nil, errBufferTooShort
+	}
 	return SendBuffer(nativeEndian.Uint32(b)), nil
 }
 
 func parseReceiveBuffer(b []byte) (Option, error) {
+	if len(b) < 4 {
+		return nil, errBufferTooShort
+	}
 	return ReceiveBuffer(nativeEndian.Uint32(b)), nil
 }
 
 func parseKeepAlive(b []byte) (Option, error) {
+	if len(b) < 4 {
+		return nil, errBufferTooShort
+	}
 	return KeepAlive(uint32bool(nativeEndian.Uint32(b))), nil
 }
 
-func parseKeepAliveValues(b []byte) (Option, error) {
-	return nil, errors.New("operation not supported")
-}
+func parseKeepAliveValues(b []byte) (Option, error) { return nil, errOpNoSupport }

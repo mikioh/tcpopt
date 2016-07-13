@@ -86,3 +86,18 @@ func TestParse(t *testing.T) {
 		t.Fatalf("got %v, %v; want nil, error", o, err)
 	}
 }
+
+func TestParseBufferOverrun(t *testing.T) {
+	for _, o := range []tcpopt.Option{
+		tcpopt.NoDelay(true),
+		tcpopt.SendBuffer(1<<16 - 1),
+		tcpopt.ReceiveBuffer(1<<16 - 1),
+		tcpopt.KeepAlive(true),
+		tcpopt.KeepAliveIdleInterval(1 * time.Hour),
+		tcpopt.KeepAliveProbeInterval(10 * time.Minute),
+		tcpopt.KeepAliveProbeCount(3),
+	} {
+		var b [3]byte
+		tcpopt.Parse(o.Level(), o.Name(), b[:])
+	}
+}

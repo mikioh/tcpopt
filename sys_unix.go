@@ -68,39 +68,66 @@ func (ns NotSentLowWMK) Marshal() ([]byte, error) {
 }
 
 func parseNoDelay(b []byte) (Option, error) {
+	if len(b) < 4 {
+		return nil, errBufferTooShort
+	}
 	return NoDelay(uint32bool(nativeEndian.Uint32(b))), nil
 }
 
 func parseSendBuffer(b []byte) (Option, error) {
+	if len(b) < 4 {
+		return nil, errBufferTooShort
+	}
 	return SendBuffer(nativeEndian.Uint32(b)), nil
 }
 
 func parseReceiveBuffer(b []byte) (Option, error) {
+	if len(b) < 4 {
+		return nil, errBufferTooShort
+	}
 	return ReceiveBuffer(nativeEndian.Uint32(b)), nil
 }
 
 func parseKeepAlive(b []byte) (Option, error) {
+	if len(b) < 4 {
+		return nil, errBufferTooShort
+	}
 	return KeepAlive(uint32bool(nativeEndian.Uint32(b))), nil
 }
 
 func parseKeepAliveIdleInterval(b []byte) (Option, error) {
+	if len(b) < 4 {
+		return nil, errBufferTooShort
+	}
 	v := time.Duration(nativeEndian.Uint32(b)) * options[soKeepidle].uot
 	return KeepAliveIdleInterval(v), nil
 }
 
 func parseKeepAliveProbeInterval(b []byte) (Option, error) {
+	if len(b) < 4 {
+		return nil, errBufferTooShort
+	}
 	v := time.Duration(nativeEndian.Uint32(b)) * options[soKeepintvl].uot
 	return KeepAliveProbeInterval(v), nil
 }
 
 func parseKeepAliveProbeCount(b []byte) (Option, error) {
+	if len(b) < 4 {
+		return nil, errBufferTooShort
+	}
 	return KeepAliveProbeCount(nativeEndian.Uint32(b)), nil
 }
 
 func parseCork(b []byte) (Option, error) {
+	if len(b) < 4 {
+		return nil, errBufferTooShort
+	}
 	return Cork(uint32bool(nativeEndian.Uint32(b))), nil
 }
 
 func parseNotSentLowWMK(b []byte) (Option, error) {
+	if len(b) < 4 {
+		return nil, errBufferTooShort
+	}
 	return NotSentLowWMK(nativeEndian.Uint32(b)), nil
 }

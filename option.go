@@ -4,7 +4,15 @@
 
 package tcpopt
 
-import "time"
+import (
+	"errors"
+	"time"
+)
+
+var (
+	errOpNoSupport    = errors.New("operation not supported")
+	errBufferTooShort = errors.New("buffer too short")
+)
 
 // An Option represents a socket option.
 type Option interface {
