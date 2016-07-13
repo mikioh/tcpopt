@@ -13,7 +13,7 @@ import (
 	"github.com/mikioh/tcpopt"
 )
 
-func TestOption(t *testing.T) {
+func TestMarshalAndParse(t *testing.T) {
 	opts := []tcpopt.Option{
 		tcpopt.NoDelay(true),
 		tcpopt.SendBuffer(1<<16 - 1),
@@ -73,7 +73,7 @@ func (*testOption) Name() int                         { return testOptName }
 func (*testOption) Marshal() ([]byte, error)          { return make([]byte, 16), nil }
 func parseTestOption(_ []byte) (tcpopt.Option, error) { return &testOption{}, nil }
 
-func TestParse(t *testing.T) {
+func TestUserDefinedOptionParser(t *testing.T) {
 	var b [16]byte
 	tcpopt.Register(testOptLevel, testOptName, parseTestOption)
 	o, err := tcpopt.Parse(testOptLevel, testOptName, b[:])
@@ -87,7 +87,7 @@ func TestParse(t *testing.T) {
 	}
 }
 
-func TestParseBufferOverrun(t *testing.T) {
+func TestParseWithVariousBufferLengths(t *testing.T) {
 	for _, o := range []tcpopt.Option{
 		tcpopt.NoDelay(true),
 		tcpopt.SendBuffer(1<<16 - 1),
@@ -97,7 +97,11 @@ func TestParseBufferOverrun(t *testing.T) {
 		tcpopt.KeepAliveProbeInterval(10 * time.Minute),
 		tcpopt.KeepAliveProbeCount(3),
 	} {
-		var b [3]byte
-		tcpopt.Parse(o.Level(), o.Name(), b[:])
+		for i := 0; i < 256; i++ {
+			b := make([]byte, i)
+			if _, err := tcpopt.Parse(o.Level(), o.Name(), b); err == nil {
+				break
+			}
+		}
 	}
 }
