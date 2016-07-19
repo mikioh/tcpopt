@@ -34,6 +34,7 @@ var options = [soMax]option{
 	soKeepcnt:      {ianaProtocolTCP, -1, 0},
 	soCork:         {ianaProtocolTCP, -1, 0},
 	soNotsentLOWAT: {ianaProtocolTCP, -1, 0},
+	soError:        {sysSOL_SOCKET, -1, 0},
 }
 
 var parsers = map[int64]func([]byte) (Option, error){

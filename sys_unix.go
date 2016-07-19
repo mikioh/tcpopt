@@ -67,6 +67,12 @@ func (ns NotSentLowWMK) Marshal() ([]byte, error) {
 	return (*[4]byte)(unsafe.Pointer(&v))[:], nil
 }
 
+// Marshal implements the Marshal method of Option interface.
+func (e Error) Marshal() ([]byte, error) {
+	v := int32(e)
+	return (*[4]byte)(unsafe.Pointer(&v))[:], nil
+}
+
 func parseNoDelay(b []byte) (Option, error) {
 	if len(b) < 4 {
 		return nil, errBufferTooShort
@@ -130,4 +136,11 @@ func parseNotSentLowWMK(b []byte) (Option, error) {
 		return nil, errBufferTooShort
 	}
 	return NotSentLowWMK(nativeEndian.Uint32(b)), nil
+}
+
+func parseError(b []byte) (Option, error) {
+	if len(b) < 4 {
+		return nil, errBufferTooShort
+	}
+	return Error(nativeEndian.Uint32(b)), nil
 }

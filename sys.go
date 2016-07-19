@@ -50,6 +50,7 @@ const (
 	soKeepcnt
 	soCork
 	soNotsentLOWAT
+	soError
 	soMax
 )
 

@@ -36,3 +36,6 @@ func (ck Cork) Marshal() ([]byte, error) { return nil, errOpNoSupport }
 
 // Marshal implements the Marshal method of Option interface.
 func (ns NotSentLowWMK) Marshal() ([]byte, error) { return nil, errOpNoSupport }
+
+// Marshal implements the Marshal method of Option interface.
+func (e Error) Marshal() ([]byte, error) { return nil, errOpNoSupport }

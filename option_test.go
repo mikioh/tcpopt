@@ -39,6 +39,11 @@ func TestMarshalAndParse(t *testing.T) {
 	case "darwin", "linux":
 		opts = append(opts, tcpopt.NotSentLowWMK(1))
 	}
+	switch runtime.GOOS {
+	case "windows":
+	default:
+		opts = append(opts, tcpopt.Error(42))
+	}
 
 	for _, o := range opts {
 		if o.Level() <= 0 {
@@ -96,6 +101,7 @@ func TestParseWithVariousBufferLengths(t *testing.T) {
 		tcpopt.KeepAliveIdleInterval(1 * time.Hour),
 		tcpopt.KeepAliveProbeInterval(10 * time.Minute),
 		tcpopt.KeepAliveProbeCount(3),
+		tcpopt.Error(42),
 	} {
 		for i := 0; i < 256; i++ {
 			b := make([]byte, i)

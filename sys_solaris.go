@@ -23,6 +23,7 @@ const (
 	sysTCP_KEEPCNT                   = 0x23
 	sysTCP_KEEPINTVL                 = 0x24
 	sysTCP_CORK                      = 0x18
+	sysSO_ERROR                      = 0x1007
 )
 
 var options = [soMax]option{
@@ -35,6 +36,7 @@ var options = [soMax]option{
 	soKeepcnt:      {ianaProtocolTCP, sysTCP_KEEPCNT, 0},
 	soCork:         {ianaProtocolTCP, sysTCP_CORK, 0},
 	soNotsentLOWAT: {ianaProtocolTCP, -1, 0},
+	soError:        {sysSOL_SOCKET, sysSO_ERROR, 0},
 }
 
 var parsers = map[int64]func([]byte) (Option, error){
@@ -46,4 +48,5 @@ var parsers = map[int64]func([]byte) (Option, error){
 	ianaProtocolTCP<<32 | sysTCP_KEEPINTVL: parseKeepAliveProbeInterval,
 	ianaProtocolTCP<<32 | sysTCP_KEEPCNT:   parseKeepAliveProbeCount,
 	ianaProtocolTCP<<32 | sysTCP_CORK:      parseCork,
+	sysSOL_SOCKET<<32 | sysSO_ERROR:        parseError,
 }

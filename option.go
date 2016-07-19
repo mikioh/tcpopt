@@ -127,3 +127,12 @@ func (ns NotSentLowWMK) Level() int { return options[soNotsentLOWAT].level }
 
 // Name implements the Name method of Option interface.
 func (ns NotSentLowWMK) Name() int { return options[soNotsentLOWAT].name }
+
+// Error represents an error on the socket.
+type Error int
+
+// Level implements the Level method of Option interface.
+func (e Error) Level() int { return options[soError].level }
+
+// Name implements the Name method of Option interface.
+func (e Error) Name() int { return options[soError].name }
