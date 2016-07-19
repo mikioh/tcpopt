@@ -5,7 +5,6 @@
 package tcpopt
 
 import (
-	"errors"
 	"time"
 	"unsafe"
 )
