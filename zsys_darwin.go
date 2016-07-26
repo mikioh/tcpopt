@@ -16,5 +16,6 @@ const (
 	sysTCP_KEEPINTVL     = 0x101
 	sysTCP_KEEPCNT       = 0x102
 	sysTCP_NOPUSH        = 0x4
+	sysTCP_ENABLE_ECN    = 0x104
 	sysTCP_NOTSENT_LOWAT = 0x201
 )

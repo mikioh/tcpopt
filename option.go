@@ -118,7 +118,7 @@ func (ck Cork) Name() int { return options[soCork].name }
 // that the connection is writable while the amount of unsent data
 // size is greater than NotSentLowWMK.
 //
-// For now only Darwin and Linux support this option.
+// Only Darwin and Linux support this option.
 // See TCP_NOTSENT_LOWAT for further information.
 type NotSentLowWMK int
 
@@ -136,3 +136,14 @@ func (e Error) Level() int { return options[soError].level }
 
 // Name implements the Name method of Option interface.
 func (e Error) Name() int { return options[soError].name }
+
+// ECN specifies the use of ECN.
+//
+// Only Darwin supports this option.
+type ECN bool
+
+// Level implements the Level method of Option interface.
+func (cn ECN) Level() int { return options[soECN].level }
+
+// Name implements the Name method of Option interface.
+func (cn ECN) Name() int { return options[soECN].name }

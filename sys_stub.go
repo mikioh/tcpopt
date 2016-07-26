@@ -39,3 +39,6 @@ func (ns NotSentLowWMK) Marshal() ([]byte, error) { return nil, errOpNoSupport }
 
 // Marshal implements the Marshal method of Option interface.
 func (e Error) Marshal() ([]byte, error) { return nil, errOpNoSupport }
+
+// Marshal implements the Marshal method of Option interface.
+func (cn ECN) Marshal() ([]byte, error) { return nil, errOpNoSupport }

@@ -25,16 +25,12 @@ const (
 )
 
 var options = [soMax]option{
-	soNodelay:      {ianaProtocolTCP, sysTCP_NODELAY, 0},
-	soSndbuf:       {sysSOL_SOCKET, sysSO_SNDBUF, 0},
-	soRcvbuf:       {sysSOL_SOCKET, sysSO_RCVBUF, 0},
-	soKeepalive:    {sysSOL_SOCKET, sysSO_KEEPALIVE, 0},
-	soKeepidle:     {ianaProtocolTCP, sysSIO_KEEPALIVE_VALS, time.Millisecond},
-	soKeepintvl:    {ianaProtocolTCP, sysSIO_KEEPALIVE_VALS, time.Millisecond},
-	soKeepcnt:      {ianaProtocolTCP, -1, 0},
-	soCork:         {ianaProtocolTCP, -1, 0},
-	soNotsentLOWAT: {ianaProtocolTCP, -1, 0},
-	soError:        {sysSOL_SOCKET, -1, 0},
+	soNodelay:   {ianaProtocolTCP, sysTCP_NODELAY, 0},
+	soSndbuf:    {sysSOL_SOCKET, sysSO_SNDBUF, 0},
+	soRcvbuf:    {sysSOL_SOCKET, sysSO_RCVBUF, 0},
+	soKeepalive: {sysSOL_SOCKET, sysSO_KEEPALIVE, 0},
+	soKeepidle:  {ianaProtocolTCP, sysSIO_KEEPALIVE_VALS, time.Millisecond},
+	soKeepintvl: {ianaProtocolTCP, sysSIO_KEEPALIVE_VALS, time.Millisecond},
 }
 
 var parsers = map[int64]func([]byte) (Option, error){

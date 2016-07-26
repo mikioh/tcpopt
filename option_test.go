@@ -44,6 +44,10 @@ func TestMarshalAndParse(t *testing.T) {
 	default:
 		opts = append(opts, tcpopt.Error(42))
 	}
+	switch runtime.GOOS {
+	case "darwin":
+		opts = append(opts, tcpopt.ECN(true))
+	}
 
 	for _, o := range opts {
 		if o.Level() <= 0 {

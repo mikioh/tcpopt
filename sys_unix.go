@@ -73,6 +73,12 @@ func (e Error) Marshal() ([]byte, error) {
 	return (*[4]byte)(unsafe.Pointer(&v))[:], nil
 }
 
+// Marshal implements the Marshal method of Option interface.
+func (cn ECN) Marshal() ([]byte, error) {
+	v := boolint32(bool(cn))
+	return (*[4]byte)(unsafe.Pointer(&v))[:], nil
+}
+
 func parseNoDelay(b []byte) (Option, error) {
 	if len(b) < 4 {
 		return nil, errBufferTooShort
@@ -143,4 +149,11 @@ func parseError(b []byte) (Option, error) {
 		return nil, errBufferTooShort
 	}
 	return Error(nativeEndian.Uint32(b)), nil
+}
+
+func parseECN(b []byte) (Option, error) {
+	if len(b) < 4 {
+		return nil, errBufferTooShort
+	}
+	return ECN(uint32bool(nativeEndian.Uint32(b))), nil
 }

@@ -51,6 +51,7 @@ const (
 	soCork
 	soNotsentLOWAT
 	soError
+	soECN
 	soMax
 )
 
