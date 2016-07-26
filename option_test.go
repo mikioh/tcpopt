@@ -42,6 +42,7 @@ func TestMarshalAndParse(t *testing.T) {
 	switch runtime.GOOS {
 	case "windows":
 	default:
+		opts = append(opts, tcpopt.MSS(4092))
 		opts = append(opts, tcpopt.Error(42))
 	}
 	switch runtime.GOOS {

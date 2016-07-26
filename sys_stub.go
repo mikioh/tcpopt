@@ -14,6 +14,9 @@ var parsers = map[int64]func([]byte) (Option, error){}
 func (nd NoDelay) Marshal() ([]byte, error) { return nil, errOpNoSupport }
 
 // Marshal implements the Marshal method of Option interface.
+func (mss MSS) Marshal() ([]byte, error) { return nil, errOpNoSupport }
+
+// Marshal implements the Marshal method of Option interface.
 func (sb SendBuffer) Marshal() ([]byte, error) { return nil, errOpNoSupport }
 
 // Marshal implements the Marshal method of Option interface.

@@ -35,6 +35,15 @@ func (nd NoDelay) Level() int { return options[soNodelay].level }
 // Name implements the Name method of Option interface.
 func (nd NoDelay) Name() int { return options[soNodelay].name }
 
+// MSS specifies the maximum segment size.
+type MSS int
+
+// Level implements the Level method of Option interface.
+func (mss MSS) Level() int { return options[soMaxseg].level }
+
+// Name implements the Name method of Option interface.
+func (mss MSS) Name() int { return options[soMaxseg].name }
+
 // SendBuffer specifies the size of send buffer.
 type SendBuffer int
 

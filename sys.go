@@ -52,6 +52,7 @@ const (
 	soNotsentLOWAT
 	soError
 	soECN
+	soMaxseg
 	soMax
 )
 

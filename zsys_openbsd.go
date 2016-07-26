@@ -12,5 +12,6 @@ const (
 	sysSO_ERROR     = 0x1007
 
 	sysTCP_NODELAY = 0x1
+	sysTCP_MAXSEG  = 0x2
 	sysTCP_NOPUSH  = 0x10
 )

@@ -18,6 +18,12 @@ func (nd NoDelay) Marshal() ([]byte, error) {
 }
 
 // Marshal implements the Marshal method of Option interface.
+func (mss MSS) Marshal() ([]byte, error) {
+	v := int32(mss)
+	return (*[4]byte)(unsafe.Pointer(&v))[:], nil
+}
+
+// Marshal implements the Marshal method of Option interface.
 func (sb SendBuffer) Marshal() ([]byte, error) {
 	v := int32(sb)
 	return (*[4]byte)(unsafe.Pointer(&v))[:], nil
@@ -84,6 +90,13 @@ func parseNoDelay(b []byte) (Option, error) {
 		return nil, errBufferTooShort
 	}
 	return NoDelay(uint32bool(nativeEndian.Uint32(b))), nil
+}
+
+func parseMSS(b []byte) (Option, error) {
+	if len(b) < 4 {
+		return nil, errBufferTooShort
+	}
+	return MSS(nativeEndian.Uint32(b)), nil
 }
 
 func parseSendBuffer(b []byte) (Option, error) {
