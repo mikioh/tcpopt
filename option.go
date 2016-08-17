@@ -6,12 +6,14 @@ package tcpopt
 
 import (
 	"errors"
+	"net"
 	"time"
 )
 
 var (
 	errOpNoSupport    = errors.New("operation not supported")
 	errBufferTooShort = errors.New("buffer too short")
+	errInvalidOption  = errors.New("invalid option")
 )
 
 // An Option represents a socket option.
@@ -156,3 +158,16 @@ func (cn ECN) Level() int { return options[soECN].level }
 
 // Name implements the Name method of Option interface.
 func (cn ECN) Name() int { return options[soECN].name }
+
+// OrignalDst is an option to acquire an original destination address,
+// which is an address not modified by intermediate entities such as
+// network address and port translators inside the kernel, on the
+// connection.
+//
+// Only Linux supports this option.
+type OriginalDst struct {
+	Family int    // address family
+	IP     net.IP // IP address
+	Port   int    // port number
+	ZoneID int    // zone identifier
+}

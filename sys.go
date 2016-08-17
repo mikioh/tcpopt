@@ -37,7 +37,9 @@ func uint32bool(n uint32) bool {
 }
 
 const (
-	ianaProtocolTCP = 0x6
+	ianaProtocolIP   = 0x0
+	ianaProtocolTCP  = 0x6
+	ianaProtocolIPv6 = 0x29
 )
 
 const (
@@ -53,6 +55,7 @@ const (
 	soError
 	soECN
 	soMaxseg
+	soOriginalDst
 	soMax
 )
 

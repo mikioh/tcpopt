@@ -21,15 +21,17 @@ var options = [soMax]option{
 }
 
 var parsers = map[int64]func([]byte) (Option, error){
-	ianaProtocolTCP<<32 | sysTCP_NODELAY:       parseNoDelay,
-	ianaProtocolTCP<<32 | sysTCP_MAXSEG:        parseMSS,
-	sysSOL_SOCKET<<32 | sysSO_SNDBUF:           parseSendBuffer,
-	sysSOL_SOCKET<<32 | sysSO_RCVBUF:           parseReceiveBuffer,
-	sysSOL_SOCKET<<32 | sysSO_KEEPALIVE:        parseKeepAlive,
-	ianaProtocolTCP<<32 | sysTCP_KEEPIDLE:      parseKeepAliveIdleInterval,
-	ianaProtocolTCP<<32 | sysTCP_KEEPINTVL:     parseKeepAliveProbeInterval,
-	ianaProtocolTCP<<32 | sysTCP_KEEPCNT:       parseKeepAliveProbeCount,
-	ianaProtocolTCP<<32 | sysTCP_CORK:          parseCork,
-	ianaProtocolTCP<<32 | sysTCP_NOTSENT_LOWAT: parseNotSentLowWMK,
-	sysSOL_SOCKET<<32 | sysSO_ERROR:            parseError,
+	ianaProtocolTCP<<32 | sysTCP_NODELAY:           parseNoDelay,
+	ianaProtocolTCP<<32 | sysTCP_MAXSEG:            parseMSS,
+	sysSOL_SOCKET<<32 | sysSO_SNDBUF:               parseSendBuffer,
+	sysSOL_SOCKET<<32 | sysSO_RCVBUF:               parseReceiveBuffer,
+	sysSOL_SOCKET<<32 | sysSO_KEEPALIVE:            parseKeepAlive,
+	ianaProtocolTCP<<32 | sysTCP_KEEPIDLE:          parseKeepAliveIdleInterval,
+	ianaProtocolTCP<<32 | sysTCP_KEEPINTVL:         parseKeepAliveProbeInterval,
+	ianaProtocolTCP<<32 | sysTCP_KEEPCNT:           parseKeepAliveProbeCount,
+	ianaProtocolTCP<<32 | sysTCP_CORK:              parseCork,
+	ianaProtocolTCP<<32 | sysTCP_NOTSENT_LOWAT:     parseNotSentLowWMK,
+	sysSOL_SOCKET<<32 | sysSO_ERROR:                parseError,
+	ianaProtocolIP<<32 | sysSO_ORIGINAL_DST:        parseOriginalDst,
+	ianaProtocolIPv6<<32 | sysIP6T_SO_ORIGINAL_DST: parseOriginalDst,
 }
