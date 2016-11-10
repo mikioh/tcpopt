@@ -60,14 +60,14 @@ func parseOriginalDst(b []byte) (Option, error) {
 	switch len(b) {
 	case sizeofSockaddrInet:
 		od := new(OriginalDst)
-		sa := (*sysSockaddrInet)(unsafe.Pointer(&b[0]))
+		sa := (*sockaddrInet)(unsafe.Pointer(&b[0]))
 		od.Family = syscall.AF_INET
 		od.IP = net.IPv4(sa.Addr[0], sa.Addr[1], sa.Addr[2], sa.Addr[3])
 		binary.BigEndian.PutUint16((*[2]byte)(unsafe.Pointer(&od.Port))[:], uint16(sa.Port))
 		return od, nil
 	case sizeofSockaddrInet6:
 		od := new(OriginalDst)
-		sa := (*sysSockaddrInet6)(unsafe.Pointer(&b[0]))
+		sa := (*sockaddrInet6)(unsafe.Pointer(&b[0]))
 		od.Family = syscall.AF_INET6
 		od.IP = make(net.IP, net.IPv6len)
 		copy(od.IP, sa.Addr[:])

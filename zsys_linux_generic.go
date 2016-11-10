@@ -26,26 +26,26 @@ const (
 	sysTCP_NOTSENT_LOWAT = 0x19
 )
 
-type sysSockaddrStorage struct {
+type sockaddrStorage struct {
 	Family        uint16
 	Pad_cgo_0     [6]byte
 	X__ss_align   uint64
 	X__ss_padding [112]int8
 }
 
-type sysSockaddr struct {
+type sockaddr struct {
 	Family uint16
 	Data   [14]int8
 }
 
-type sysSockaddrInet struct {
+type sockaddrInet struct {
 	Family uint16
 	Port   uint16
 	Addr   [4]byte /* in_addr */
 	X__pad [8]uint8
 }
 
-type sysSockaddrInet6 struct {
+type sockaddrInet6 struct {
 	Family   uint16
 	Port     uint16
 	Flowinfo uint32

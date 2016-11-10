@@ -41,13 +41,13 @@ const (
 	sysTCP_NOTSENT_LOWAT = C.TCP_NOTSENT_LOWAT
 )
 
-type sysSockaddrStorage C.struct_sockaddr_storage
+type sockaddrStorage C.struct_sockaddr_storage
 
-type sysSockaddr C.struct_sockaddr
+type sockaddr C.struct_sockaddr
 
-type sysSockaddrInet C.struct_sockaddr_in
+type sockaddrInet C.struct_sockaddr_in
 
-type sysSockaddrInet6 C.struct_sockaddr_in6
+type sockaddrInet6 C.struct_sockaddr_in6
 
 const (
 	sizeofSockaddrStorage = C.sizeof_struct_sockaddr_storage
