@@ -39,6 +39,9 @@ const (
 	sysTCP_KEEPCNT       = C.TCP_KEEPCNT
 	sysTCP_CORK          = C.TCP_CORK
 	sysTCP_NOTSENT_LOWAT = C.TCP_NOTSENT_LOWAT
+
+	sysAF_INET  = C.AF_INET
+	sysAF_INET6 = C.AF_INET6
 )
 
 type sockaddrStorage C.struct_sockaddr_storage

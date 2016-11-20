@@ -23,6 +23,9 @@ const (
 	sysTCP_KEEPCNT       = 0x6
 	sysTCP_CORK          = 0x3
 	sysTCP_NOTSENT_LOWAT = 0x19
+
+	sysAF_INET  = 0x2
+	sysAF_INET6 = 0xa
 )
 
 type sockaddrStorage struct {
