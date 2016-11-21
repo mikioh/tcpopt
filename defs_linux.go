@@ -13,11 +13,8 @@ package tcpopt
 #include <sys/ioctl.h>
 #include <sys/socket.h>
 
-#include <linux/if.h>
 #include <linux/in.h>
 #include <linux/in6.h>
-#include <linux/netfilter_ipv4.h>
-#include <linux/netfilter_ipv6/ip6_tables.h>
 #include <linux/tcp.h>
 */
 import "C"
@@ -25,12 +22,10 @@ import "C"
 const (
 	sysSOL_SOCKET = C.SOL_SOCKET
 
-	sysSO_KEEPALIVE         = C.SO_KEEPALIVE
-	sysSO_SNDBUF            = C.SO_SNDBUF
-	sysSO_RCVBUF            = C.SO_RCVBUF
-	sysSO_ERROR             = C.SO_ERROR
-	sysSO_ORIGINAL_DST      = C.SO_ORIGINAL_DST
-	sysIP6T_SO_ORIGINAL_DST = C.IP6T_SO_ORIGINAL_DST
+	sysSO_KEEPALIVE = C.SO_KEEPALIVE
+	sysSO_SNDBUF    = C.SO_SNDBUF
+	sysSO_RCVBUF    = C.SO_RCVBUF
+	sysSO_ERROR     = C.SO_ERROR
 
 	sysTCP_NODELAY       = C.TCP_NODELAY
 	sysTCP_MAXSEG        = C.TCP_MAXSEG
@@ -39,22 +34,4 @@ const (
 	sysTCP_KEEPCNT       = C.TCP_KEEPCNT
 	sysTCP_CORK          = C.TCP_CORK
 	sysTCP_NOTSENT_LOWAT = C.TCP_NOTSENT_LOWAT
-
-	sysAF_INET  = C.AF_INET
-	sysAF_INET6 = C.AF_INET6
-)
-
-type sockaddrStorage C.struct_sockaddr_storage
-
-type sockaddr C.struct_sockaddr
-
-type sockaddrInet C.struct_sockaddr_in
-
-type sockaddrInet6 C.struct_sockaddr_in6
-
-const (
-	sizeofSockaddrStorage = C.sizeof_struct_sockaddr_storage
-	sizeofSockaddr        = C.sizeof_struct_sockaddr
-	sizeofSockaddrInet    = C.sizeof_struct_sockaddr_in
-	sizeofSockaddrInet6   = C.sizeof_struct_sockaddr_in6
 )
