@@ -5,6 +5,7 @@
 package tcpopt
 
 import (
+	"errors"
 	"time"
 	"unsafe"
 )
@@ -80,40 +81,48 @@ func (ka KeepAliveProbeInterval) Marshal() ([]byte, error) {
 }
 
 // Marshal implements the Marshal method of Option interface.
-func (ka KeepAliveProbeCount) Marshal() ([]byte, error) { return nil, errOpNoSupport }
+func (ka KeepAliveProbeCount) Marshal() ([]byte, error) {
+	return nil, errors.New("operation not supported")
+}
 
 // Marshal implements the Marshal method of Option interface.
-func (ck Cork) Marshal() ([]byte, error) { return nil, errOpNoSupport }
+func (ck Cork) Marshal() ([]byte, error) {
+	return nil, errors.New("operation not supported")
+}
 
 // Marshal implements the Marshal method of Option interface.
-func (ns NotSentLowWMK) Marshal() ([]byte, error) { return nil, errOpNoSupport }
+func (ns NotSentLowWMK) Marshal() ([]byte, error) {
+	return nil, errors.New("operation not supported")
+}
 
 func parseNoDelay(b []byte) (Option, error) {
 	if len(b) < 4 {
-		return nil, errBufferTooShort
+		return nil, errors.New("short buffer")
 	}
 	return NoDelay(uint32bool(nativeEndian.Uint32(b))), nil
 }
 
 func parseSendBuffer(b []byte) (Option, error) {
 	if len(b) < 4 {
-		return nil, errBufferTooShort
+		return nil, errors.New("short buffer")
 	}
 	return SendBuffer(nativeEndian.Uint32(b)), nil
 }
 
 func parseReceiveBuffer(b []byte) (Option, error) {
 	if len(b) < 4 {
-		return nil, errBufferTooShort
+		return nil, errors.New("short buffer")
 	}
 	return ReceiveBuffer(nativeEndian.Uint32(b)), nil
 }
 
 func parseKeepAlive(b []byte) (Option, error) {
 	if len(b) < 4 {
-		return nil, errBufferTooShort
+		return nil, errors.New("short buffer")
 	}
 	return KeepAlive(uint32bool(nativeEndian.Uint32(b))), nil
 }
 
-func parseKeepAliveValues(b []byte) (Option, error) { return nil, errOpNoSupport }
+func parseKeepAliveValues(b []byte) (Option, error) {
+	return nil, errors.New("operation not supported")
+}

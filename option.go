@@ -4,16 +4,7 @@
 
 package tcpopt
 
-import (
-	"errors"
-	"time"
-)
-
-var (
-	errOpNoSupport    = errors.New("operation not supported")
-	errBufferTooShort = errors.New("buffer too short")
-	errInvalidOption  = errors.New("invalid option")
-)
+import "time"
 
 // An Option represents a socket option.
 type Option interface {

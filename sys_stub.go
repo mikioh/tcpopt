@@ -6,42 +6,68 @@
 
 package tcpopt
 
+import "errors"
+
 var options [soMax]option
 
 var parsers = map[int64]func([]byte) (Option, error){}
 
 // Marshal implements the Marshal method of Option interface.
-func (nd NoDelay) Marshal() ([]byte, error) { return nil, errOpNoSupport }
+func (nd NoDelay) Marshal() ([]byte, error) {
+	return nil, errors.New("operation not supported")
+}
 
 // Marshal implements the Marshal method of Option interface.
-func (mss MSS) Marshal() ([]byte, error) { return nil, errOpNoSupport }
+func (mss MSS) Marshal() ([]byte, error) {
+	return nil, errors.New("operation not supported")
+}
 
 // Marshal implements the Marshal method of Option interface.
-func (sb SendBuffer) Marshal() ([]byte, error) { return nil, errOpNoSupport }
+func (sb SendBuffer) Marshal() ([]byte, error) {
+	return nil, errors.New("operation not supported")
+}
 
 // Marshal implements the Marshal method of Option interface.
-func (rb ReceiveBuffer) Marshal() ([]byte, error) { return nil, errOpNoSupport }
+func (rb ReceiveBuffer) Marshal() ([]byte, error) {
+	return nil, errors.New("operation not supported")
+}
 
 // Marshal implements the Marshal method of Option interface.
-func (ka KeepAlive) Marshal() ([]byte, error) { return nil, errOpNoSupport }
+func (ka KeepAlive) Marshal() ([]byte, error) {
+	return nil, errors.New("operation not supported")
+}
 
 // Marshal implements the Marshal method of Option interface.
-func (ka KeepAliveIdleInterval) Marshal() ([]byte, error) { return nil, errOpNoSupport }
+func (ka KeepAliveIdleInterval) Marshal() ([]byte, error) {
+	return nil, errors.New("operation not supported")
+}
 
 // Marshal implements the Marshal method of Option interface.
-func (ka KeepAliveProbeInterval) Marshal() ([]byte, error) { return nil, errOpNoSupport }
+func (ka KeepAliveProbeInterval) Marshal() ([]byte, error) {
+	return nil, errors.New("operation not supported")
+}
 
 // Marshal implements the Marshal method of Option interface.
-func (ka KeepAliveProbeCount) Marshal() ([]byte, error) { return nil, errOpNoSupport }
+func (ka KeepAliveProbeCount) Marshal() ([]byte, error) {
+	return nil, errors.New("operation not supported")
+}
 
 // Marshal implements the Marshal method of Option interface.
-func (ck Cork) Marshal() ([]byte, error) { return nil, errOpNoSupport }
+func (ck Cork) Marshal() ([]byte, error) {
+	return nil, errors.New("operation not supported")
+}
 
 // Marshal implements the Marshal method of Option interface.
-func (ns NotSentLowWMK) Marshal() ([]byte, error) { return nil, errOpNoSupport }
+func (ns NotSentLowWMK) Marshal() ([]byte, error) {
+	return nil, errors.New("operation not supported")
+}
 
 // Marshal implements the Marshal method of Option interface.
-func (e Error) Marshal() ([]byte, error) { return nil, errOpNoSupport }
+func (e Error) Marshal() ([]byte, error) {
+	return nil, errors.New("operation not supported")
+}
 
 // Marshal implements the Marshal method of Option interface.
-func (cn ECN) Marshal() ([]byte, error) { return nil, errOpNoSupport }
+func (cn ECN) Marshal() ([]byte, error) {
+	return nil, errors.New("operation not supported")
+}
