@@ -7,8 +7,10 @@
 //
 // Example:
 //
-//	import "github.com/mikioh/tcp"
-//	import "github.com/mikioh/tcpopt"
+//	import (
+//		"github.com/mikioh/tcp"
+//		"github.com/mikioh/tcpopt"
+//	)
 //
 //	tc, err := tcp.NewConn(c)
 //	if err != nil {
