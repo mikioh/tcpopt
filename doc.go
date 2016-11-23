@@ -12,6 +12,12 @@
 //		"github.com/mikioh/tcpopt"
 //	)
 //
+//	c, err := ln.Accept()
+//	if err != nil {
+//		// error handling
+//	}
+//	defer c.Close()
+//
 //	tc, err := tcp.NewConn(c)
 //	if err != nil {
 //		// error handling
