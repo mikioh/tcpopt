@@ -63,7 +63,7 @@ func TestMarshalAndParse(t *testing.T) {
 		}
 		oo, err := tcpopt.Parse(o.Level(), o.Name(), b)
 		if err != nil {
-			t.Errorf("%#v, %v", o, err)
+			t.Error(o.Level(), o.Name(), err)
 			continue
 		}
 		if !reflect.DeepEqual(oo, o) {
