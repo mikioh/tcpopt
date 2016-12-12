@@ -61,6 +61,9 @@ func TestMarshalAndParse(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
+		if runtime.GOOS == "windows" {
+			continue
+		}
 		oo, err := tcpopt.Parse(o.Level(), o.Name(), b)
 		if err != nil {
 			t.Fatal(err)
