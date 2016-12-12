@@ -49,6 +49,11 @@ func (nd NoDelay) Marshal() ([]byte, error) {
 }
 
 // Marshal implements the Marshal method of Option interface.
+func (mss MSS) Marshal() ([]byte, error) {
+	return nil, errors.New("operation not supported")
+}
+
+// Marshal implements the Marshal method of Option interface.
 func (sb SendBuffer) Marshal() ([]byte, error) {
 	v := int32(sb)
 	return (*[4]byte)(unsafe.Pointer(&v))[:], nil
@@ -92,6 +97,16 @@ func (ck Cork) Marshal() ([]byte, error) {
 
 // Marshal implements the Marshal method of Option interface.
 func (ns NotSentLowWMK) Marshal() ([]byte, error) {
+	return nil, errors.New("operation not supported")
+}
+
+// Marshal implements the Marshal method of Option interface.
+func (e Error) Marshal() ([]byte, error) {
+	return nil, errors.New("operation not supported")
+}
+
+// Marshal implements the Marshal method of Option interface.
+func (cn ECN) Marshal() ([]byte, error) {
 	return nil, errors.New("operation not supported")
 }
 
