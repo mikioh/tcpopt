@@ -19,27 +19,28 @@ const (
 
 	sysTCP_NODELAY = 0x1
 
-	sysIOC_OUT            = 0x40000000
-	sysIOC_IN             = 0x80000000
-	sysIOC_VENDOR         = 0x18000000
-	sysSIO_KEEPALIVE_VALS = sysIOC_IN | sysIOC_VENDOR | 4
+	sysIOC_OUT    = 0x40000000
+	sysIOC_IN     = 0x80000000
+	sysIOC_VENDOR = 0x18000000
 )
+
+var sysSIO_KEEPALIVE_VALS uint = sysIOC_IN | sysIOC_VENDOR | 4
 
 var options = [soMax]option{
 	soNodelay:   {ianaProtocolTCP, sysTCP_NODELAY, 0},
 	soSndbuf:    {sysSOL_SOCKET, sysSO_SNDBUF, 0},
 	soRcvbuf:    {sysSOL_SOCKET, sysSO_RCVBUF, 0},
 	soKeepalive: {sysSOL_SOCKET, sysSO_KEEPALIVE, 0},
-	soKeepidle:  {ianaProtocolTCP, sysSIO_KEEPALIVE_VALS, time.Millisecond},
-	soKeepintvl: {ianaProtocolTCP, sysSIO_KEEPALIVE_VALS, time.Millisecond},
+	soKeepidle:  {ianaProtocolTCP, int(sysSIO_KEEPALIVE_VALS), time.Millisecond},
+	soKeepintvl: {ianaProtocolTCP, int(sysSIO_KEEPALIVE_VALS), time.Millisecond},
 }
 
 var parsers = map[int64]func([]byte) (Option, error){
-	ianaProtocolTCP<<32 | sysTCP_NODELAY:        parseNoDelay,
-	sysSOL_SOCKET<<32 | sysSO_SNDBUF:            parseSendBuffer,
-	sysSOL_SOCKET<<32 | sysSO_RCVBUF:            parseReceiveBuffer,
-	sysSOL_SOCKET<<32 | sysSO_KEEPALIVE:         parseKeepAlive,
-	ianaProtocolTCP<<32 | sysSIO_KEEPALIVE_VALS: parseKeepAliveValues,
+	ianaProtocolTCP<<32 | sysTCP_NODELAY:               parseNoDelay,
+	sysSOL_SOCKET<<32 | sysSO_SNDBUF:                   parseSendBuffer,
+	sysSOL_SOCKET<<32 | sysSO_RCVBUF:                   parseReceiveBuffer,
+	sysSOL_SOCKET<<32 | sysSO_KEEPALIVE:                parseKeepAlive,
+	ianaProtocolTCP<<32 | int64(sysSIO_KEEPALIVE_VALS): parseKeepAliveValues,
 }
 
 // Marshal implements the Marshal method of Option interface.
