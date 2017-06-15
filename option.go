@@ -45,7 +45,7 @@ func (sb SendBuffer) Level() int { return options[soSndbuf].level }
 // Name implements the Name method of Option interface.
 func (sb SendBuffer) Name() int { return options[soSndbuf].name }
 
-// ReceiveBuffer specifies the size of send buffer.
+// ReceiveBuffer specifies the size of receive buffer.
 type ReceiveBuffer int
 
 // Level implements the Level method of Option interface.
