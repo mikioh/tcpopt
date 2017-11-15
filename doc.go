@@ -4,28 +4,4 @@
 
 // Package tcpopt implements encoding and decoding of TCP-level socket
 // options.
-//
-// Example:
-//
-//	import (
-//		"github.com/mikioh/tcp"
-//		"github.com/mikioh/tcpopt"
-//	)
-//
-//	c, err := ln.Accept()
-//	if err != nil {
-//		// error handling
-//	}
-//	defer c.Close()
-//
-//	tc, err := tcp.NewConn(c)
-//	if err != nil {
-//		// error handling
-//	}
-//	if err := tc.SetOption(tcpopt.KeepAlive(true)); err != nil {
-//		// error handling
-//	}
-//	if err := tc.SetOption(tcpopt.KeepAliveProbeCount(3)); err != nil {
-//		// error handling
-//	}
 package tcpopt
