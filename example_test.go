@@ -30,7 +30,7 @@ func ExampleOption() {
 	if err := tc.SetOption(tcpopt.KeepAliveIdleInterval(3 * time.Minute)); err != nil {
 		log.Fatal(err)
 	}
-	if err := tc.SetOption(tcpopt.KeepAliveIdleInterval(30 * time.Second)); err != nil {
+	if err := tc.SetOption(tcpopt.KeepAliveProbeInterval(30 * time.Second)); err != nil {
 		log.Fatal(err)
 	}
 	if err := tc.SetOption(tcpopt.KeepAliveProbeCount(3)); err != nil {
